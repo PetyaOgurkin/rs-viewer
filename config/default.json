@@ -1,0 +1,7 @@
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://admin:123@rc-viewer-cluster.r1cjc.mongodb.net/app?retryWrites=true&w=majority",
+    "jwtSecret": "secret jwt key",
+    "baseUrl": "http://localhost:5000"
+}
+

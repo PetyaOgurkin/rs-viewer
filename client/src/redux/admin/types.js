@@ -1,0 +1,14 @@
+export const FETCH_PRODUCTS = "ADMIN/FETCH_PRODUCTS";
+export const FETCH_TILES = "ADMIN/FETCH_TILES";
+export const FETCH_MAP = "ADMIN/FETCH_MAP";
+export const ADD_TILE = "ADMIN/ADD_TILE";
+export const ADD_PRODUCT = "ADMIN/ADD_PRODUCT";
+export const EDIT_TILE = "ADMIN/EDIT_TILE";
+export const EDIT_PRODUCT = "ADMIN/EDIT_PRODUCT";
+export const DELETE_TILE = "ADMIN/DELETE_TILE";
+export const DELETE_PRODUCT = "ADMIN/DELETE_PRODUCT";
+export const SET_MAP = "ADMIN/SET_MAP";
+export const SHOW_MODAL = "ADMIN/SHOW_MODAL";
+export const HIDE_MODAL = "ADMIN/HIDE_MODAL";
+export const SET_BODY = "ADMIN/SET_BODY";
+export const SET_FORM = "ADMIN/SET_FORM";

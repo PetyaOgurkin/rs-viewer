@@ -1,0 +1,20 @@
+[
+    {
+        "title": "topo",
+        "id": "topo1",
+        "URL": "http://monitor.krasn.ru/tiles/topo/{z}/{x}/{-y}.png",
+        "resolution_levels": 17
+    },
+    {
+        "title": "sentinel",
+        "id": "sentinel1",
+        "URL": "http://monitor.krasn.ru/tiles/sentinel2016/{z}/{x}/{-y}.jpeg",
+        "resolution_levels": 12
+    },
+    {
+        "title": "relief_dark",
+        "id": "relief_dark1",
+        "URL": "http://monitor.krasn.ru/tiles/relief_dark/{z}/{x}/{-y}.jpeg",
+        "resolution_levels": 13
+    }
+]

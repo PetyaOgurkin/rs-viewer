@@ -1,0 +1,2 @@
+export const SET_TIME = 'TIMELINE/SET_TIME';
+export const UPDATE_LAYERS = 'TIMELINE/UPDATE_LAYERS';
