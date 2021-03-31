@@ -33,13 +33,13 @@ export default function Timeline() {
 
         dispatch(setTime({ hour, day, mouth, year, position: e.target.value }))
 
-        dispatch(updateLayers(time, map));
+        dispatch(updateLayers({ hour, day, mouth, year, position: e.target.value }, map));
     }
 
 
     return (
         <div className="timeline">
-            <Form.Control type="range" onChange={changeTimeHandler} value={time.position} />
+            <Form.Control type="range" onInput={changeTimeHandler} value={time.position} />
         </div>
     )
 }

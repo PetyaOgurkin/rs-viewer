@@ -32,12 +32,11 @@ export function updateLayers(time, map) {
             }
         }
     })
-    
+
     return {
         type: UPDATE_LAYERS
     }
 }
-
 
 
 function timeFormatParser(format, time) {

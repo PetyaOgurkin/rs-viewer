@@ -1,4 +1,4 @@
-import {  LOGIN, LOGOUT, STORAGE_NAME, VERIFY } from "./types"
+import { LOGIN, LOGOUT, STORAGE_NAME, VERIFY } from "./types"
 
 export function login(login, password) {
     return async dispatch => {
@@ -19,12 +19,10 @@ export function login(login, password) {
             }))
 
 
-
             dispatch({
                 type: LOGIN,
                 payload: data
             })
-
 
         } catch (e) {
             console.log('something wrong:', e.message);

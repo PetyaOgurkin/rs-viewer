@@ -98,7 +98,6 @@ export function fetchMapSettings() {
 
 
 export function fetchInitial() {
-
     return async dispatch => {
         dispatch({ type: START_LOAD })
 

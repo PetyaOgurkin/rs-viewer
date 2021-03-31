@@ -64,11 +64,15 @@ export function addProductOnMap(product, map, projection, zIndex, time) {
 
     const layer = createImgLayer(projection, product.url, timeParams, { id: product._id, title: product.title, zIndex, timeFormat: product.timeFormat });
 
+    const legendSrc = layer.getSource().getLegendUrl(map.getView().getResolution(), {
+        'SLD_VERSION': '1.1.0'
+    });
+
     map.addLayer(layer)
 
     return {
         type: ADD_PRODUCT_ON_MAP,
-        payload: product
+        payload: { ...product, legendUrl: legendSrc }
     }
 }
 

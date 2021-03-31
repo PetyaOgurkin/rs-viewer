@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { deinitMap } from '../redux/map/actions'
 import Catalog from './catalog/catalog'

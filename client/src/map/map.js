@@ -7,5 +7,5 @@ export const createMap = (target) => {
 }
 
 export const createView = (center, zoom, projection, extent) => {
-    return new View({ center, zoom, projection, extent })
+    return new View({ center, zoom, projection, extent})
 }

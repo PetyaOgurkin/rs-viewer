@@ -13,42 +13,102 @@ export default function MapComponent() {
 
     const { loading, mapSettings, tiles, isInit } = useSelector(state => state.map);
 
-    useEffect(() => {
-        dispatch(fetchInitial());
-    }, [dispatch])
 
     useEffect(() => {
+        if (!isInit) {
+            dispatch(fetchInitial());
+        }
 
-        if (!loading && !isInit) {
+    }, [dispatch, isInit])
 
-            const initedMap = createMap('map');
+    const classList = ['layer__info'];
 
-            dispatch(initMap(initedMap));
+    useEffect(() => {
 
-            const initTileData = tiles.find(t => {
-                if (t._id === mapSettings.tile) {
-                    return t
-                } else return false
-            })
+        if (!isInit) {
 
-            const projection = createProjection(initTileData.projection);
+            if (!loading) {
 
-            dispatch(setProjection(projection))
+                const initedMap = createMap('map');
 
-            const initTile = createTileLayer(projection, initTileData.url, initTileData.extents, initTileData.resolutions, initTileData._id)
 
-            dispatch(setTile(initedMap, initTile))
 
-            dispatch(setView(createView(mapSettings.center, mapSettings.zoom, projection, initTileData.extents), initedMap))
+                dispatch(initMap(initedMap));
+
+                const initTileData = tiles.find(t => {
+                    if (t._id === mapSettings.tile) {
+                        return t
+                    } else return false
+                })
+
+                const projection = createProjection(initTileData.projection, initTileData.extents);
+
+                dispatch(setProjection(projection))
+
+                const initTile = createTileLayer(projection, initTileData.url, initTileData.extents, initTileData.resolutions, initTileData._id)
+
+                dispatch(setTile(initedMap, initTile))
+
+                dispatch(setView(createView(mapSettings.center, mapSettings.zoom, projection, initTileData.extents), initedMap))
+
+
+
+
+                initedMap.on('singleclick', function (evt) {
+
+
+                    initedMap.forEachLayerAtPixel(evt.pixel, function (feature) {
+
+                        if (feature.get('type') === 'IMAGE') {
+
+                            const layer = feature.getSource();
+
+                            const url = layer.getFeatureInfoUrl(evt.coordinate, initedMap.getView().getResolution(), initTileData.projection,
+                                {
+                                    'INFO_FORMAT': 'application/vnd.ogc.gml'
+                                });
+
+
+
+                            if (url) {
+                                const parser = new DOMParser();
+
+                                fetch(url)
+                                    .then(response => response.text())
+                                    .then(xml => {
+
+
+
+                                        const data = parser.parseFromString(xml, "text/xml");
+
+                                        const info = data.querySelector('class');
+                                        if (info) {
+                                            console.log('here');
+                                            classList.push('layer__info__open')
+                                        }
+                                        console.log(data.querySelector('class'));
+
+
+                                    });
+                            }
+                        }
+                    });
+                });
+            }
+
+
 
         }
     })
 
 
+   
 
     if (loading) {
         return <Spinner animation="grow" />
     }
+
+    console.log(classList);
 
     return (
         <>
@@ -56,7 +116,7 @@ export default function MapComponent() {
             <div className="tiles">
                 <Tiles />
             </div>
-
+            <div className={classList.join(' ')}></div>
         </>
     )
 }

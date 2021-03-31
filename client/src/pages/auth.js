@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { login } from '../redux/auth/actions';
 
 export default function AuthPage() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [form, setForm] = useState({
         login: '',
@@ -20,8 +19,7 @@ export default function AuthPage() {
 
     const loginHandler = event => {
         event.preventDefault()
-        dispatch(login(form.login, form.password)).then(() => history.push('/admin'))
-
+        dispatch(login(form.login, form.password))
     }
 
 

@@ -29,12 +29,18 @@ export default function Sidebar() {
             <ReactSortable list={selectedProducts} setList={updateHandler} animation={200} delayOnTouchStart={true} delay={5} onEnd={sortHandler}>
                 {selectedProducts.map((product, i) => (
                     <ListGroup.Item key={i}>
-                        <div className="layer__item">
-                            {product.title}
-                            <Button variant="outline-dark" size="sm" aria-label="delete" onClick={() => dispatch(removeProductFromMap(product, map))}>
-                                <Trash size={12} />
-                            </Button>
+                        <div>
+                            <div className="layer__item">
+                                {product.title}
+                                <Button variant="outline-dark" size="sm" aria-label="delete" onClick={() => dispatch(removeProductFromMap(product, map))}>
+                                    <Trash size={12} />
+                                </Button>
+                            </div>
+                            <div>
+                                <img src={product.legendUrl}></img>
+                            </div>
                         </div>
+
                     </ListGroup.Item>
                 ))}
             </ReactSortable>
